@@ -1,0 +1,145 @@
+openapi: 3.0.1
+info:
+  title: Ecommerce Cross-sell MVP
+  version: "1.0.0"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+servers:
+  - url: '{protocol}://{host}:{port}/'
+    variables:
+      protocol:
+        default: http
+        enum:
+          - http
+          - https
+      host:
+        default: localhost
+      port:
+        default: '8080'
+paths:
+  /users/{userId}/basket:
+    get:
+      tags:
+        - basket
+      operationId: getByUserId
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basket'
+        400:
+          description: Bad Request.
+    post:
+      tags:
+        - basket
+      operationId: addProductToBasket
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basket'
+        400:
+          description: Bad Request.
+  /products:
+    get:
+      tags:
+        - product
+      operationId: getAll
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /products/{id}:
+    get:
+      tags:
+        - product
+      operationId: getById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductPage'
+        400:
+          description: Bad Request.
+        404:
+          description: Not found.
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        price:
+          type: string
+    Basket:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        items:
+          $ref: '#/components/schemas/Items'
+    Items:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+    ProductPage:
+      type: object
+      properties:
+        product:
+          $ref: '#/components/schemas/Product'
+        cross_selling:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'

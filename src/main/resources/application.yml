@@ -1,0 +1,16 @@
+server:
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: eCommerce
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    username: superuser
+    password: supersecret
+  resources:
+    cache:
+      period: 604800
