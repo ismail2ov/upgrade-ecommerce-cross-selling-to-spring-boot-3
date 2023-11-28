@@ -34,9 +34,9 @@
       <artifactId>flyway-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.vladmihalcea</groupId>
-      <artifactId>hibernate-types-52</artifactId>
-      <version>2.16.2</version>
+      <groupId>io.hypersistence</groupId>
+      <artifactId>hypersistence-utils-hibernate-60</artifactId>
+      <version>3.6.1</version>
     </dependency>
     <dependency>
       <groupId>org.postgresql</groupId>
