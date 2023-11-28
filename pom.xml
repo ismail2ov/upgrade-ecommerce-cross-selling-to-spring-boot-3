@@ -234,36 +234,6 @@
           </excludedTestClasses>
         </configuration>
       </plugin>
-
-      <plugin>
-        <groupId>org.openrewrite.maven</groupId>
-        <artifactId>rewrite-maven-plugin</artifactId>
-        <version>5.13.0</version>
-        <configuration>
-          <activeRecipes>
-            <recipe>org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_0</recipe>
-            <recipe>org.openrewrite.hibernate.TypeAnnotationParameter</recipe>
-            <recipe>org.openrewrite.java.spring.boot3.UpgradeSpringDoc_2</recipe>
-          </activeRecipes>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.openrewrite.recipe</groupId>
-            <artifactId>rewrite-spring</artifactId>
-            <version>5.1.2</version>
-          </dependency>
-          <dependency>
-            <groupId>org.openrewrite.recipe</groupId>
-            <artifactId>rewrite-hibernate</artifactId>
-            <version>1.0.7</version>
-          </dependency>
-          <dependency>
-            <groupId>org.openrewrite.recipe</groupId>
-            <artifactId>rewrite-spring</artifactId>
-            <version>5.1.2</version>
-          </dependency>
-        </dependencies>
-      </plugin>
     </plugins>
   </build>
 
