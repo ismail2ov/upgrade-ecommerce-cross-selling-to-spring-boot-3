@@ -1,4 +1,4 @@
-# eCommerce Cross-selling
+# Upgrade eCommerce Cross-Sell MVP from Spring Boot 2 to Spring Boot 3
 
 ## Goal
 
