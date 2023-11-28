@@ -2,7 +2,6 @@ package com.github.ismail2ov.ecommerce.infrastructure.controller;
 
 import com.github.ismail2ov.ecommerce.application.ProductService;
 import com.github.ismail2ov.ecommerce.domain.Product;
-import com.github.ismail2ov.ecommerce.domain.ProductNotFoundException;
 import com.github.ismail2ov.ecommerce.domain.ProductPageDTO;
 import com.github.ismail2ov.ecommerce.infrastructure.controller.api.ProductsApi;
 import com.github.ismail2ov.ecommerce.infrastructure.controller.mapper.ProductMapper;
@@ -32,14 +31,8 @@ public class ProductController implements ProductsApi {
 
   @Override
   public ResponseEntity<ProductPageRDTO> getById(Long id) {
-    try {
-      ProductPageDTO productPageDTO = productService.getProductBy(id);
+    ProductPageDTO productPageDTO = productService.getProductBy(id);
 
-      return ResponseEntity.ok(productMapper.productPageRDTOFrom(productPageDTO));
-
-    } catch (ProductNotFoundException e) {
-      log.info(e.getMessage());
-      return ResponseEntity.notFound().build();
-    }
+    return ResponseEntity.ok(productMapper.productPageRDTOFrom(productPageDTO));
   }
 }
